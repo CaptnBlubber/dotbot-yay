@@ -7,6 +7,8 @@ directive. It allows installation of packeges using `yay`, and by extension
 This plugin will attempt to install `yay` if not already present. This should make it easier to
 set up a new computer.
 
+This Plugin is based on [dotbot-pacaur](https://github.com/ajlende/dotbot-pacaur).
+
 ## Installation
 
 Add it as a submodule of your dotfiles repository.

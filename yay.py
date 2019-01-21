@@ -16,11 +16,11 @@ class Yay(dotbot.Plugin):
         super(Yay, self).__init__(self)
         self._context = context
         self._strings = {}
-        self._strings[PkgStatus.UP_TO_DATE] = 'nothing to do'
+        self._strings[PkgStatus.UP_TO_DATE] = 'is up to date -- skipping'
         self._strings[PkgStatus.INSTALLED] = 'Total Installed Size'
-        self._strings[PkgStatus.NOT_FOUND] = 'no results found'
+        self._strings[PkgStatus.NOT_FOUND] = 'Error: Could not find all required packages:'
         self._strings[PkgStatus.BUILD_FAIL] = 'failed to build'
-        self._strings[PkgStatus.ERROR] = 'Errors occurred'
+        self._strings[PkgStatus.ERROR] = 'Error:'
 
     def can_handle(self, directive):
         return directive in self._directives
@@ -58,7 +58,7 @@ class Yay(dotbot.Plugin):
         # Make sure we are sudo so we don't have any problems
         subprocess.call('sudo --validate', shell=True)
 
-        cmd = 'LANG=en_US.UTF-8 yay --needed --noconfirm --noedit -S {}'.format(pkg)
+        cmd = 'LANG=en_US.UTF-8 yay --needed --noconfirm -S {}'.format(pkg)
 
         self._log.info('Installing {}'.format(pkg))
 
